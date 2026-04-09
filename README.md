@@ -17,16 +17,6 @@ Este proyecto es una plataforma de e-commerce funcional desarrollada con **Djang
 4. Instalar dependencias: `pip install django`.
 5. Ejecutar: `python manage.py runserver`.
 
-## 🔐 Credenciales de Acceso (Para Evaluación)
-Para facilitar la revisión de las funcionalidades, se incluyen las siguientes cuentas:
-
-* **Administrador de Django:** 
-  * **Usuario:** `admin`
-  * **Contraseña:** `admin`
-* **Cliente de Prueba:**
-  * **Usuario:** `cliente_1`
-  * **Contraseña:** `prueba123`
-
 ## ✨ Buenas Prácticas Aplicadas
 **Seguridad:** Implementación de cierre de sesión mediante método POST para prevenir ataques CSRF.
 **UX/UI:** Mejora de la jerarquía visual en el Navbar y optimización del contraste en el botón del carrito.
