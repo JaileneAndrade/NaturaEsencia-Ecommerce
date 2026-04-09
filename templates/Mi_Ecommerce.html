@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<section>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'Asset/img/banner_carrusel4.jpg' %}" class="d-block w-100" height="500px" style="object-fit: cover;" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'Asset/img/banner_carrusel2.jpg' %}" class="d-block w-100" height="500px" style="object-fit: cover;" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'Asset/img/banner_carrusel3.jpg' %}" class="d-block w-100" height="500px" style="object-fit: cover;" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'Asset/img/banner_carrusel1.jpg' %}" class="d-block w-100" height="500px" style="object-fit: cover;" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h2 class="text-center mb-4">Nuestros Productos</h2>
+    <div class="row g-3">
+        <div class="col-6 col-md-4 col-lg-3">
+            <img src="{% static 'Asset/img/galeria1.webp' %}" class="img-fluid rounded shadow-sm" alt="Foto 1">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+            <img src="{% static 'Asset/img/galeria2.jpg' %}" class="img-fluid rounded shadow-sm" alt="Foto 2">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+            <img src="{% static 'Asset/img/galeria3.jpg' %}" class="img-fluid rounded shadow-sm" alt="Foto 3">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+            <img src="{% static 'Asset/img/galeria4.jpg' %}" class="img-fluid rounded shadow-sm" alt="Foto 4">
+        </div>
+    </div>
+</section>
+
+<section class="text-center container py-5">
+    <h1 class="fw-bold">TOP 3 MÁS VENDIDOS</h1>
+    <div class="row py-5">
+        {% for producto in top_productos %}
+        <div class="col-12 col-md-4 pb-5 d-flex justify-content-center">
+            <div class="card h-100 shadow-sm" style="width: 18rem;">
+                <img src="{% static 'Asset/img/' %}{{ producto.imagen_nombre }}" class="card-img-top" height="300px" style="object-fit: cover;" alt="{{ producto.nombre }}">
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title fw-bold">{{ producto.nombre }}</h4>
+                    <p class="card-text text-muted">{{ producto.descripcion }}</p>
+                    <p class="card-text">Precio: <span class="fw-bold">$ {{ producto.precio|intcomma }}</span></p>
+                    <a href="{% url 'catalogo' %}" class="btn btn-brown mt-auto">Ver Más</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No hay productos disponibles actualmente.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

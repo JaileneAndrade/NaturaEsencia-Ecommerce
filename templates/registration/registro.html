@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Crear Cuenta - NaturaEsencia{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <h2 class="text-center text-brown fw-bold mb-4">Crear Cuenta</h2>
+                    
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-brown small mb-1">{{ field.label }}</label>
+                                {{ field }}
+                                
+                                {% if field.help_text %}
+                                    <div class="form-text">
+                                        {% if "50 characters" in field.help_text %}
+                                            Requerido. Máximo 50 caracteres. Solo letras, números y @/./+/-/_.
+                                        {% elif "password can’t be too similar" in field.help_text %}
+                                            La clave no puede ser parecida a tu nombre.
+                                        {% elif "must contain at least 8 characters" in field.help_text %}
+                                            Debe tener al menos 8 caracteres.
+                                        {% elif "commonly used password" in field.help_text %}
+                                            Usa una contraseña más difícil.
+                                        {% elif "entirely numeric" in field.help_text %}
+                                            No puede ser solo números.
+                                        {% elif "Enter the same password" in field.help_text %}
+                                            Escribe la misma contraseña de antes para verificar.
+                                        {% else %}
+                                            {{ field.help_text }}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}                         
+
+                                {% for error in field.errors %}
+                                    <div class="text-danger small fw-bold">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-brown w-100 py-2 fw-bold shadow-sm mt-3 rounded-pill">
+                            REGISTRARME
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4 border-top pt-3">
+                        <p class="mb-0 small">¿Ya tienes cuenta? <a href="{% url 'login' %}" class="text-brown fw-bold text-decoration-none">Inicia sesión aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

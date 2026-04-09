@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Pago - NaturaEsencia{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4 text-brown">Finalizar Compra</h2>
+            
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-body bg-light rounded">
+                    <h5 class="card-title text-brown fw-bold">Detalle del Pedido</h5>
+                    <hr>
+                    <ul class="list-unstyled">
+                        {% for item in items_carrito %}
+                        <li class="d-flex justify-content-between mb-2">
+                            <span>{{ item.producto.nombre }} <small class="text-muted">x{{ item.cantidad }}</small></span>
+                            <span class="text-muted">$ {{ item.producto.precio|intcomma }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold fs-5">
+                        <span>Total a pagar:</span>
+                        <span class="text-success">$ {{ total_pago|intcomma }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <form method="POST" class="shadow p-4 rounded bg-white">
+                {% csrf_token %}
+                <input type="hidden" name="total_hidden" value="{{ total_pago }}"> 
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nombre Completo</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Ej: Jailene Pérez" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Correo Electrónico</label>
+                    <input type="email" name="email" class="form-control" placeholder="nombre@ejemplo.com" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Dirección de Envío</label>
+                    <input type="text" name="direccion" class="form-control" placeholder="Calle, Número, Comuna" required>
+                </div>
+                
+                <button type="submit" class="btn btn-brown w-100 py-3 mt-4 fw-bold shadow-sm">
+                    <i class="bi bi-credit-card me-2"></i>CONFIRMAR Y PAGAR
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}¡Compra Exitosa! - NaturaEsencia{% endblock %}
+
+{% block content %}
+<div class="container py-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 p-4">
+                <div class="card-body">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+                    <h2 class="mt-3 text-brown fw-bold">¡Gracias por tu compra!</h2>
+                    <p class="lead">Tu pedido ha sido recibido y estamos preparando tus productos naturales con mucho cariño.</p>
+                    
+                    <div class="bg-light p-3 rounded mb-4">
+                        <h5 class="mb-0">Número de Pedido: <span class="text-brown">#{{ pedido.id }}</span></h5>
+                        <p class="text-muted mb-0">Se ha enviado un detalle a: <strong>{{ pedido.email }}</strong></p>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'home' %}" class="btn btn-brown btn-lg">Volver al Inicio</a>
+                        <a href="{% url 'catalogo' %}" class="btn btn-outline-secondary">Seguir Comprando</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

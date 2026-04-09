@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block body_class %}body-catalogo{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Catálogo Completo</h1>
+        <p>Encuentra el cuidado perfecto para ti</p>
+    </div>
+
+    <div class="container my-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4"> {% for producto in productos %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <img src="{% static 'Asset/img/' %}{{ producto.imagen_nombre }}" 
+                    class="card-img-top" 
+                    style="height: 200px; object-fit: cover;"
+                    alt="{{ producto.nombre }}">
+                
+                <div class="card-body d-flex flex-column text-start"> <h5 class="card-title fw-bold text-brown">{{ producto.nombre }}</h5>
+                    <p class="card-text text-muted small flex-grow-1">
+                        {{ producto.descripcion|truncatechars:80 }}
+                    </p>
+                    <div class="mt-auto">
+                        <h6 class="fw-bold fs-5">$ {{ producto.precio|intcomma }}</h6>
+                        <a href="{% url 'agregar_al_carrito' producto.id %}" class="btn btn-brown w-100">
+                            <i class="bi bi-cart-plus"></i> Agregar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

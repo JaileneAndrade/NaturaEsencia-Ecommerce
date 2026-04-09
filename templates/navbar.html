@@ -1,0 +1,62 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 1050;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'Asset/img/logo.png' %}" alt="logonav" width="200px"/>
+        </a>
+        
+        <button class="navbar-toggler order-2 mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <button class="btn btn-brown position-relative order-3 order-lg-3 me-3" type="button">
+            <a href="{% url 'ver_carrito' %}" class="btn position-relative p-0 border-0 shadow-none">
+                <i class="bi bi-cart3 fs-4 text-white"></i> 
+                <span id="contador-carrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ cantidad_carrito }}
+                </span>
+            </a>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'catalogo' %}">Catalogo</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Contactanos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'contacto' %}">E-mail</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+                {% if user.is_authenticated %}
+                    <li class="nav-item d-flex align-items-center">
+                        <span class="navbar-text me-3 fw-bold text-dark">
+                            <i class="bi bi-person-circle me-1"></i> ¡Hola, {{ user.username }}!
+                        </span>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <form method="post" action="{% url 'logout' %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger rounded-pill me-4">
+                                Cerrar Sesión
+                            </button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-brown btn-sm rounded-pill me-4 fw-bold" href="{% url 'login' %}">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar Sesión
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

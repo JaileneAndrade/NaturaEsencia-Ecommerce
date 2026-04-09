@@ -1,0 +1,55 @@
+body {
+  padding-top: 70px;
+  background-color: rgb(51, 138, 116);
+}
+.btn-brown {
+  background-color: #81532f;
+  color: white;
+}
+
+.btn-brown:hover {
+  background-color: #5f3d25;
+  color: white;
+}
+#colorfondo {
+  background-color: #3fb698;
+}
+
+/* Adaptación para formularios NaturaEsencia */
+.text-brown {
+    color: #81532f; 
+}
+
+.card.rounded-4 {
+    border-radius: 1.2rem !important;
+}
+
+input[type="text"], 
+input[type="password"], 
+input[type="email"],
+input[type="number"],
+textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    color: #212529;
+    background-color: #ffffff;
+    border: 2px solid #3fb698; 
+    border-radius: 0.5rem;
+    transition: border-color .15s ease-in-out;
+    margin-bottom: 8px;
+}
+
+input:focus {
+    border-color: #81532f; 
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(129, 83, 47, 0.25);
+}
+
+.form-text.text-muted {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    display: block;
+    margin-bottom: 10px;
+}

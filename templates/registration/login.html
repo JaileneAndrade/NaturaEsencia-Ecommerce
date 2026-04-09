@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión - NaturaEsencia{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-body p-5">
+                    <h2 class="text-center text-brown fw-bold mb-4">Iniciar Sesión</h2>
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-danger">Usuario o contraseña incorrectos.</div>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nombre de usuario</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Contraseña</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-brown w-100 py-2 fw-bold shadow-sm">Ingresar</button>
+                        <div class="text-center mt-3">
+                            <p>¿No tienes cuenta? <a href="{% url 'registro' %}" class="text-brown fw-bold">Crea una aquí</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
